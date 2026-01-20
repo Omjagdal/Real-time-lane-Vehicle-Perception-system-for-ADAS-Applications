@@ -270,19 +270,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⭐ **If you find this project helpful, please consider giving it a star!** ⭐
 
-## 📚 Citation
-
-If you use this project in your research, please cite:
-
-```bibtex
-@software{adas_perception_2025,
-  author = {Om Jagdale},
-  title = {Real-Time Lane and Vehicle Perception System for ADAS},
-  year = {2025},
-  url = {https://github.com/your-username/adas_perception}
-}
-```
-
----
 
 **Made with ❤️ for safer autonomous driving**
+
