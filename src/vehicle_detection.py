@@ -18,6 +18,26 @@ try:
 except ImportError:
     _ULTRALYTICS_OK = False
 
+# ---------------------------------------------------------------------------
+# PyTorch 2.6+ compatibility fix
+# torch.load changed its default to weights_only=True in 2.6, which breaks
+# Ultralytics model loading.  We patch it to keep the old behaviour.
+# ---------------------------------------------------------------------------
+try:
+    import torch
+    import functools
+    _original_torch_load = torch.load
+
+    @functools.wraps(_original_torch_load)
+    def _patched_torch_load(f, *args, **kwargs):
+        kwargs.setdefault("weights_only", False)
+        return _original_torch_load(f, *args, **kwargs)
+
+    torch.load = _patched_torch_load
+except Exception:
+    pass  # if torch isn't installed we'll get a better error later
+
+
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -26,23 +46,31 @@ VEHICLE_CLASSES = {2: "car", 3: "motorcycle", 5: "bus", 7: "truck"}
 DEFAULT_CONF    = 0.4
 DEFAULT_IOU     = 0.45
 
-# Candidate locations to look for the YOLO weights file.
-# The first existing file wins; if none exist, Ultralytics auto-downloads.
+# ---------------------------------------------------------------------------
+# Model path resolution — absolute paths based on this file's location
+# so the model is found regardless of the working directory.
+# ---------------------------------------------------------------------------
+_SRC_DIR     = os.path.dirname(os.path.abspath(__file__))
+_PROJECT_DIR = os.path.dirname(_SRC_DIR)   # one level up from src/
+
 _MODEL_CANDIDATES = [
-    "models/yolo/yolov11n.pt",   # project local copy
-    "models/yolo/yolo11n.pt",
-    "yolo11n.pt",                 # Ultralytics default cache name
-    "yolov8n.pt",                 # fallback if YOLO 11 not present
+    os.path.join(_PROJECT_DIR, "models", "yolo", "yolov11n.pt"),  # local copy
+    os.path.join(_PROJECT_DIR, "models", "yolo", "yolo11n.pt"),
+    os.path.join(_PROJECT_DIR, "yolo11n.pt"),
+    "yolo11n.pt",          # Ultralytics auto-download fallback
 ]
 
 def _resolve_model() -> str:
     """Return the first existing weights path, or the Ultralytics download name."""
     for path in _MODEL_CANDIDATES:
         if os.path.isfile(path):
+            print(f"[ADAS] Found YOLO model: {path}")
             return path
-    return "yolo11n.pt"   # Ultralytics will download this automatically
+    print("[ADAS] yolo11n.pt not found locally — Ultralytics will download it.")
+    return "yolo11n.pt"
 
 DEFAULT_MODEL = _resolve_model()
+
 
 
 # ---------------------------------------------------------------------------
