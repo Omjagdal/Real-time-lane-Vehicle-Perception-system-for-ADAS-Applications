@@ -7,7 +7,7 @@ An end-to-end Advanced Driver Assistance System (ADAS) perception pipeline that 
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.1+-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## 📌 Key Features
+# 📌 Key Features
 
 - 🎥 **Real-time video processing** (dashcam / traffic camera)
 - 🛣️ **Lane detection** using UltraFast Lane Detection / Traditional CV
@@ -272,4 +272,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 
 **Made with ❤️ for safer autonomous driving**
+
 
