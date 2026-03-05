@@ -200,7 +200,7 @@ TTC = Distance / (Ego_Speed - Vehicle_Speed)
 - ✅ **Smart transportation systems**
 - ✅ **Driver safety research**
 - ✅ **Fleet management**
-- ✅ **Insurance telematics**
+
 
 ## 📊 Performance Metrics
 
@@ -267,6 +267,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [![Email](https://img.shields.io/badge/Email-Contact-red)](mailto:your.email@example.com)
 
 ---
+
 
 
 
