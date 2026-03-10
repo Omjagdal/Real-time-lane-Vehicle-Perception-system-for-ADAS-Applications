@@ -239,6 +239,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-⭐ **If you find this project helpful, please consider giving it a star!** ⭐
 
-**Made with ❤️ for safer autonomous driving**
