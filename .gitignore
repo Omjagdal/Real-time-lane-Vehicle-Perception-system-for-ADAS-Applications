@@ -1,0 +1,27 @@
+# Virtual Environments
+myenv/
+venv/
+adas_env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+
+# Application Specific
+jobs/
+outputs/
+models/yolo/yolo11n.pt
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.npm/

@@ -165,13 +165,16 @@ export default function UploadPage({ settings, setSettings, onJob }) {
                     <div>
                         <div className="flex justify-between text-sm mb-2">
                             <span className="text-gray-400">Max Frames</span>
-                            <span className="font-mono text-cyan-400">{settings.max_frames}</span>
+                            <span className="font-mono text-cyan-400">{settings.max_frames === 0 ? 'All' : settings.max_frames}</span>
                         </div>
-                        <input type="range" min="50" max="3000" step="50"
+                        <input type="range" min="0" max="5000" step="50"
                             value={settings.max_frames}
                             onChange={e => setSettings(s => ({ ...s, max_frames: parseInt(e.target.value) }))}
                             className="w-full accent-cyan-500"
                         />
+                        <div className="flex justify-between text-[10px] text-gray-600 mt-1">
+                            <span>0 (all frames)</span><span>5000</span>
+                        </div>
                     </div>
 
                     {/* Device */}

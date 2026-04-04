@@ -162,7 +162,10 @@ def _process_video(job_id: str, input_path: str, output_path: str,
         frame_idx   = 0
         total_brake = 0
         total_caution = 0
-        frames_to_proc = min(max_frames, total) if total > 0 else max_frames
+        if max_frames > 0:
+            frames_to_proc = min(max_frames, total) if total > 0 else max_frames
+        else:
+            frames_to_proc = total if total > 0 else 999999
 
         job["total_frames"]   = frames_to_proc
         job["fps_source"]     = fps
@@ -223,7 +226,7 @@ async def upload_video(
     conf       : float = 0.4,
     device     : str   = "cpu",
     ego_speed  : float = 60.0,
-    max_frames : int   = 500,
+    max_frames : int   = 0,
 ):
     job_id   = str(uuid.uuid4())
     job_dir  = JOBS_DIR / job_id
@@ -300,11 +303,24 @@ async def stream_progress(job_id: str):
 
 @app.get("/api/frame/{job_id}")
 async def get_preview_frame(job_id: str):
-    """Return latest annotated JPEG frame."""
+    """Return latest annotated JPEG frame, or a black placeholder if not ready."""
     preview = JOBS_DIR / job_id / "preview.jpg"
     if not preview.exists():
-        raise HTTPException(status_code=404, detail="No frame yet")
-    return FileResponse(str(preview), media_type="image/jpeg")
+        # Return a small black JPEG placeholder instead of 404
+        from src.preprocessing import TARGET_WIDTH, TARGET_HEIGHT
+        placeholder = np.zeros((TARGET_HEIGHT, TARGET_WIDTH, 3), dtype=np.uint8)
+        # Add a "Loading..." text
+        cv2.putText(placeholder, "Initializing ADAS pipeline...",
+                    (TARGET_WIDTH // 2 - 250, TARGET_HEIGHT // 2),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1.0, (80, 80, 80), 2)
+        _, buf = cv2.imencode(".jpg", placeholder, [cv2.IMWRITE_JPEG_QUALITY, 70])
+        return StreamingResponse(
+            iter([buf.tobytes()]),
+            media_type="image/jpeg",
+            headers={"Cache-Control": "no-cache"},
+        )
+    return FileResponse(str(preview), media_type="image/jpeg",
+                        headers={"Cache-Control": "no-cache"})
 
 
 @app.get("/api/jobs/{job_id}")

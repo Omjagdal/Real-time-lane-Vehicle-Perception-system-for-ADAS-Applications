@@ -21,8 +21,10 @@ export default function ProcessingPage({ jobId, onDone }) {
             const data = JSON.parse(e.data)
             setStats(data)
 
-            // Refresh preview frame every update
-            setFrameUrl(`${API}/api/frame/${jobId}?t=${Date.now()}`)
+            // Only refresh preview once at least one frame is processed
+            if (data.frame > 0) {
+                setFrameUrl(`${API}/api/frame/${jobId}?t=${Date.now()}`)
+            }
 
             if (data.status === 'done') {
                 es.close()
@@ -100,7 +102,8 @@ export default function ProcessingPage({ jobId, onDone }) {
                     </div>
                     <div className="aspect-video bg-black/40 flex items-center justify-center">
                         {frameUrl ? (
-                            <img src={frameUrl} alt="Preview" className="w-full h-full object-contain" />
+                            <img src={frameUrl} alt="Preview" className="w-full h-full object-contain"
+                                onError={e => { e.target.style.display = 'none' }} />
                         ) : (
                             <div className="flex flex-col items-center gap-3 text-gray-600">
                                 <Cpu size={32} className="animate-pulse" />

@@ -12,7 +12,7 @@ export default function App() {
     conf: 0.4,
     ego_speed: 60,
     device: 'cpu',
-    max_frames: 500,
+    max_frames: 0,
   })
 
   function handleJobCreated(id) {
