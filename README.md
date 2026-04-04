@@ -15,7 +15,7 @@ Output Video
 
 
 
-[Click here to watch the output video](./adas_50b63375.mp4)
+[Click here to watch the output video](https://github.com/Omjagdal/real-time-lane-vehicle-perception-system-for-adas-applications/blob/main/adas_54553913.mp4)
 
 ---
 
