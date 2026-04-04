@@ -11,6 +11,13 @@ An end-to-end **Advanced Driver Assistance System (ADAS)** perception pipeline t
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ---
+Output Video
+
+
+
+[Click here to watch the output video](./adas_50b63375.mp4)
+
+---
 
 ## 📌 Key Features
 
