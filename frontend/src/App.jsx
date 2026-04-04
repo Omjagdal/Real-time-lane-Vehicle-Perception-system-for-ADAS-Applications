@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import IntroPage from './components/IntroPage'
 import UploadPage from './components/UploadPage'
 import ProcessingPage from './components/ProcessingPage'
 import ResultsPage from './components/ResultsPage'
 
-// Simple state-machine router: upload → processing → results
+// State-machine router: intro → upload → processing → results
 export default function App() {
-  const [page, setPage] = useState('upload')
+  const [page, setPage] = useState('intro')
   const [jobId, setJobId] = useState(null)
   const [settings, setSettings] = useState({
     conf: 0.4,
@@ -14,6 +15,10 @@ export default function App() {
     device: 'cpu',
     max_frames: 0,
   })
+
+  function handleStart() {
+    setPage('upload')
+  }
 
   function handleJobCreated(id) {
     setJobId(id)
@@ -29,11 +34,19 @@ export default function App() {
     setPage('upload')
   }
 
+  function handleHome() {
+    setJobId(null)
+    setPage('intro')
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header page={page} />
+      <Header page={page} onHome={handleHome} />
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        {page === 'intro' && (
+          <IntroPage onStart={handleStart} />
+        )}
         {page === 'upload' && (
           <UploadPage
             settings={settings}
@@ -50,8 +63,9 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-4 text-center text-xs text-gray-600">
-        ADAS Perception System · YOLOv11n · IoU Tracking · FCW · Built with React + FastAPI
+      <footer className="border-t border-white/5 py-5 text-center text-xs text-gray-600 space-y-1">
+        <p>ADAS Perception System · YOLOv11n · IoU Tracking · FCW</p>
+        <p className="text-gray-700">Built with React + FastAPI · © 2025 Om Jagdale</p>
       </footer>
     </div>
   )
