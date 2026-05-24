@@ -451,17 +451,3 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 - [PyTorch](https://pytorch.org/) team
 - [SciPy](https://scipy.org/) for Hungarian algorithm implementation
 
----
-
-## 👨‍💻 Author
-
-**Om Jagdale**
-📌 Computer Vision & AI Enthusiast
-📌 ADAS | Deep Learning | Edge AI
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin)](https://linkedin.com/in/omjagdale)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?logo=github)](https://github.com/OmJagdale)
-[![Email](https://img.shields.io/badge/Email-Contact-EA4335?logo=gmail)](mailto:omjagdale.ai@gmail.com)
-
----
-
