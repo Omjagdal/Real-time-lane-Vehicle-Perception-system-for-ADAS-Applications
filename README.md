@@ -433,7 +433,6 @@ lsof -ti:8000 | xargs kill -9
 - [ ] DeepSORT / ByteTrack for robust tracking
 - [ ] Camera calibration tool for accurate distance
 - [ ] Real-time webcam / RTSP stream support
-- [ ] Docker containerization
 - [ ] GPU-optimized deployment (TensorRT / ONNX)
 
 ---
