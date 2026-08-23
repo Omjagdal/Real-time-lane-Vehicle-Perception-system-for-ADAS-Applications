@@ -425,17 +425,6 @@ lsof -ti:8000 | xargs kill -9
 - ✅ Driver safety research & education
 - ✅ Computer vision portfolio projects
 
----
-
-## 🗺️ Roadmap
-
-- [ ] Deep learning lane detection (LaneATT / CLRNet)
-- [ ] DeepSORT / ByteTrack for robust tracking
-- [ ] Camera calibration tool for accurate distance
-- [ ] Real-time webcam / RTSP stream support
-- [ ] GPU-optimized deployment (TensorRT / ONNX)
-
----
 
 ## 📝 License
 
