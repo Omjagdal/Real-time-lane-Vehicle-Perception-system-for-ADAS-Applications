@@ -437,5 +437,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 - [Ultralytics](https://github.com/ultralytics/ultralytics) for YOLOv11
 - [OpenCV](https://opencv.org/) community
 - [PyTorch](https://pytorch.org/) team
-- [SciPy](https://scipy.org/) for Hungarian algorithm implementation
 
