@@ -430,11 +430,3 @@ lsof -ti:8000 | xargs kill -9
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
----
-
-## 🙏 Acknowledgments
-
-- [Ultralytics](https://github.com/ultralytics/ultralytics) for YOLOv11
-- [OpenCV](https://opencv.org/) community
-- [PyTorch](https://pytorch.org/) team
-
